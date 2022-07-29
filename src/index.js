@@ -2,19 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+//Square
+//tag内の{}は描画されるもの
 class Square extends React.Component {
     render() {
       return (
-        <button className="square">
-          {/* TODO */}
+        <button className="square" onClick={() => console.log('click')}>
+          {this.props.value}
         </button>
       );
     }
   }
   
+//Board
+//squareに依存
   class Board extends React.Component {
     renderSquare(i) {
-      return <Square />;
+      return <Square value={i} />;
     }
   
     render() {
@@ -43,6 +47,8 @@ class Square extends React.Component {
     }
   }
   
+  //Game
+  //Square, Boardに依存
   class Game extends React.Component {
     render() {
       return (
@@ -64,7 +70,8 @@ class Square extends React.Component {
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(<Game />);
   
-
+// <div>はビルド時にReact.createElement('div')に変換される
+//このReactコンポーネントは独立して動くので再帰可能
 class ShoppiingList extends React.Component {
     render() {
         return (
@@ -79,3 +86,4 @@ class ShoppiingList extends React.Component {
         );
     }
 }
+
